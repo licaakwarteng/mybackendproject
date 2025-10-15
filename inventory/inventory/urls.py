@@ -17,9 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from django.http import JsonResponse
 
+def home(request):
+    return JsonResponse({"message": "Welcome to my Inventory Mgt API"})
 
 urlpatterns = [
+    path('', home, name='home'),
     path('store/', include('store.urls')),
     path('admin/', admin.site.urls),
 

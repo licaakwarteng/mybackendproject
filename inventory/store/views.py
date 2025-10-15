@@ -3,28 +3,14 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.db import transaction
 from django.shortcuts import get_object_or_404
-from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework import serializers
 from rest_framework.generics import ListAPIView, CreateAPIView
 from .models import Product, Category, InventoryChange
 from .serializers import ProductSerializer, InventoryChangeSerializer
-from .models import Product
-from .serializers import ProductSerializer
 
 def index(request):
     return HttpResponse("Welcome to our store!")
-
-class ProductCreateView(CreateAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-
-    def get_queryset(self):
-        return "Get the products created"
-
-class ProductListView(ListAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
